@@ -10,6 +10,19 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+  public selectedIndex = 0;
+  public appPages = [
+    {
+      title: 'Lista de Reservas',
+      url: '/lista-reservas',
+      icon: 'list'
+    },
+    {
+      title: 'Desistir de Reservas',
+      url: '/desistir-reserva',
+      icon: 'trash'
+    }
+  ];
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,

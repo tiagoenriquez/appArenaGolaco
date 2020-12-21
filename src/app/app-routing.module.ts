@@ -8,8 +8,28 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full'
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'cadastro-usuario',
+    loadChildren: () => import('./cadastro-usuario/cadastro-usuario.module').then( m => m.CadastroUsuarioPageModule)
+  },
+  {
+    path: 'lista-reservas',
+    loadChildren: () => import('./lista-reservas/lista-reservas.module').then( m => m.ListaReservasPageModule)
+  },
+  {
+    path: 'cadastro-reserva',
+    loadChildren: () => import('./cadastro-reserva/cadastro-reserva.module').then( m => m.CadastroReservaPageModule)
+  },
+  {
+    path: 'desistir-reserva',
+    loadChildren: () => import('./desistir-reserva/desistir-reserva.module').then( m => m.DesistirReservaPageModule)
   },
 ];
 

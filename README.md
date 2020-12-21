@@ -15,9 +15,17 @@ Angular 10.0.0 <br>
 Ionic 5.4.16 <br>
 Node v12.18.3<br>
 
-## Ações desta API:
+## Telas deste aplicativo:
 
+1. Login:<br>
 
+2. Cadastro de usuário: <br>
+
+3. Lista de reservas: <br>
+
+4. Cadastro de reserva: <br>
+
+5. Desistir de reserva: <br>
 
 ## Autores:
 
