@@ -1,9 +1,50 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>cadastro-usuario</ion-title>
+    <ion-buttons slot="start">
+    <ion-back-button defaultHref="login"></ion-back-button>
+  </ion-buttons>
+    <ion-title>Cadastro de Usuário</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
 
+        <ion-item>
+          <ion-label position="floating">Nome</ion-label>
+          <ion-input [(ngModel)]="usuario.nome" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">CPF</ion-label>
+          <ion-input [(ngModel)]="usuario.cpf" type="number"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Telefone</ion-label>
+          <ion-input [(ngModel)]="usuario.telefone" type="tel"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">E-mail</ion-label>
+          <ion-input [(ngModel)]="usuario.email" type="mail"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Senha</ion-label>
+          <ion-input [(ngModel)]="usuario.senha" type="password"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Confirmar Senha</ion-label>
+          <ion-input [(ngModel)]="usuario.senhaConfirmacao" type="password"></ion-input>
+        </ion-item>
+
+        <ion-button shape="round" expand="full" (click)="criarUsuario();">Cadastrar</ion-button>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
