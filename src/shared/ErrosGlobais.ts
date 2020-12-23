@@ -20,6 +20,7 @@ export class ErrosGlobais implements ErrorHandler {
         }
 
         if (error instanceof HttpErrorResponse) {
+            let haErro = true;
             let er: HttpErrorResponse = error;
             let msg;
             switch (er.status) {
@@ -32,7 +33,7 @@ export class ErrosGlobais implements ErrorHandler {
                 default:
                     msg = er.error;
             }
-            this.mostrarErro(msg);
+            if(haErro == true) this.mostrarErro(msg);
         }
     }
 

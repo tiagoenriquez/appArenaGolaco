@@ -1,3 +1,37 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <!-- <ion-split-pane contentId="main">
+    <ion-menu (ionWillOpen)="pegarUsuarioLogado();" menuId="main-menu" content-id="main" type="overlay">
+      <ion-content>
+        <div><ion-label>
+          <h2>{{ usuario.nome }}</h2>
+          <p>{{ usuario.email }}</p>
+        </ion-label>
+        </div>
+
+        <ion-grid>
+          <ion-row>
+            <ion-menu-toggle class="teste2" auto-hide="false" *ngFor="let p of appPages; let i = index">
+              <ion-item class="teste2" (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]"
+                lines="none" detail="false" [class.selected]="selectedIndex == i">
+                <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
+                <ion-label>{{ p.title }}</ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+          </ion-row>
+        </ion-grid>
+
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+
+              <ion-menu-toggle>
+                <ion-button expand="full" size="large" shape="round" (click)="sair();">Sair</ion-button>
+              </ion-menu-toggle>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+      </ion-content>
+    </ion-menu>
+  </ion-split-pane> -->
 </ion-app>

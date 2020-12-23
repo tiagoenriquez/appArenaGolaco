@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { MenuController, Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { Usuario } from 'src/models/Usuario';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+  public usuario = new Usuario();
   public selectedIndex = 0;
   public appPages = [
     {
@@ -44,4 +46,11 @@ export class AppComponent {
     });
   }
   
+  obterUsuarioLogado() {
+
+  }
+
+  sair() {
+
+  }
 }

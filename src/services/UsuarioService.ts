@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { Login } from "src/models/Login";
 import { Usuario } from "src/models/Usuario";
 import { Global } from "src/shared/Global";
 
@@ -27,6 +28,15 @@ export class UsuarioService {
         if(usuario.senha != usuario.senhaConfirmacao) throw new Error("Senha e Confirmar Senha não são equivalentes");
         
         return this.http.post<Response>(this.apiUrl, usuario);
+
+    }
+
+    logar(login: Login): Observable<Usuario> {
+
+        if(!login.email) throw new Error("O campo E-mail não foi preenchido");
+        if(!login.senha) throw new Error("O campo Senha não foi preenchido");
+        
+        return this.http.post<Usuario>(`${this.apiUrl}/login`, login);
 
     }
     
