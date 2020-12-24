@@ -20,10 +20,10 @@ export class CadastroUsuarioPage implements OnInit {
 
   criarUsuario() {
 
-    let subscription = this.usuarioService.inserir(this.usuario).subscribe((res) => {}, restwo => {});
-    this.mostrarMensagem();
-    this.router.navigate(['/login']);
-
+    let subscription = this.usuarioService.inserir(this.usuario).subscribe((res) => {}, restwo => {
+      this.mostrarMensagem();
+      this.router.navigate(['/login']);
+    });
   }
 
   async mostrarMensagem() {

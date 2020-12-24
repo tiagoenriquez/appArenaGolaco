@@ -1,9 +1,36 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Lista de Reservas</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+
+        <ion-item>
+          <ion-label>Data selecionada:</ion-label>
+          <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="data" (ionChange)="listar(data)"></ion-datetime>
+        </ion-item>
+
+        <ion-row>
+          <ion-col>
+            <ion-button shape="round" expand="full" (click)="reservar();">Reserve um horário</ion-button>
+          </ion-col>
+        </ion-row>
+
+        <ion-item expand="full" *ngFor="let reserva of reservas">
+          De {{ obterHorario(reserva.inicio) }} até
+          {{ obterHorario(reserva.fim) }}<br>Usuário:
+          {{ reserva.usuario }}
+        </ion-item>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>

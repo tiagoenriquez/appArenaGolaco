@@ -4,6 +4,7 @@ import { MenuController, Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Usuario } from 'src/models/Usuario';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -34,7 +35,8 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private menu: MenuController
+    private menu: MenuController,
+    private router: Router
   ) {
     this.initializeApp();
   }
@@ -47,10 +49,13 @@ export class AppComponent {
   }
   
   obterUsuarioLogado() {
-
+    const usuarioLogado: Usuario = JSON.parse(localStorage.getItem('usuarioLogado'));
+    if(usuarioLogado) this.usuario = usuarioLogado;
   }
 
   sair() {
-
+    localStorage.clear();
+    this.menu.swipeGesture(false);
+    this.router.navigate(['/login']);
   }
 }
