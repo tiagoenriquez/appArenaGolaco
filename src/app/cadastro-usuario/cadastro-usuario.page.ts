@@ -21,16 +21,16 @@ export class CadastroUsuarioPage implements OnInit {
   criarUsuario() {
 
     let subscription = this.usuarioService.inserir(this.usuario).subscribe((res) => {}, restwo => {
-      this.mostrarMensagem();
+      this.mostrarMensagem("Usuário cadastrado com sucesso.");
       this.router.navigate(['/login']);
     });
   }
 
-  async mostrarMensagem() {
+  async mostrarMensagem(mensagem: string) {
       const alert = await this.alert.create({
           cssClass: 'alert-padrao',
           header: 'Informação',
-          message: 'Usuário cadastrado com sucesso',
+          message: mensagem,
           buttons: ['OK']
       });
 

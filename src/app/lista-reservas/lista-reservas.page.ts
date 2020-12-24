@@ -18,19 +18,18 @@ export class ListaReservasPage implements OnInit {
   constructor(private reservaService: ReservaService, private router: Router) { }
 
   ngOnInit() {
+    this.data = DateFormat.convertDateTimePrint(Date());
+    this.listar(this.data);
+    this.obterHorariosDisponiveis(this.data);
   }
 
   ionViewDidEnter() {
-    this.data = Date();
-    this.data = DateFormat.convertDateTimePrint(this.data);
-    this.listar(this.data);
-    this.obterHorariosDisponiveis();
   }
 
-  listar(data: string) {
-    let subscribe = this.reservaService.listarPorData(data).subscribe((res) => {
-      this.reservas = res;
-    });
+  listar(data: string){
+    let reservas: ReservaData[] = new Array<ReservaData>();
+    let subscribe = this.reservaService.listarPorData(data).subscribe(res => this.reservas = res);
+    console.log(this.reservas);
   }
 
   reservar() {
@@ -43,23 +42,24 @@ export class ListaReservasPage implements OnInit {
     return DateFormat.convertTimePrint(data);
   }
 
-  obterHorariosDisponiveis() {
+  obterHorariosDisponiveis(data: string) {
     let subscribe = this.reservaService.listarPorData(this.data).subscribe((res) => {
-      this.reservas = res;
-      let data = Date();
+      let reservas = res;
+      console.log(reservas);
       let dataAtual = Number(data[8] + data[9]);
       let horaAtual = Number(data[16] + data[17]);
       let horariosPossiveis = [6, 8, 10, 12, 14, 16, 18, 20];
-      for(let reserva of this.reservas) {
+      for(let reserva of reservas) {
         let data = Number(reserva.inicio[8] + reserva.inicio[9]);
         let hora = Number(reserva.inicio[11] + reserva.inicio[12]);
         for(let i = 0; i < horariosPossiveis.length; i++) {
           console.log(horariosPossiveis[i]);
-          if(horariosPossiveis[i] != hora || (horariosPossiveis[i] < horaAtual && data == dataAtual) || data < dataAtual) {
+          if(horariosPossiveis[i] == hora || (horariosPossiveis[i] < horaAtual && data == dataAtual) || data < dataAtual) {
+            console.log(horariosPossiveis[i]);
+            console.log(reserva);
             horariosPossiveis.splice(horariosPossiveis[i]);
           }
         }
-        console.log(horariosPossiveis);
       }
     });
   }
