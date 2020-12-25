@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from 'src/models/Usuario';
 import { ReservaService } from 'src/services/ReservaService';
+import { DateFormat } from 'src/shared/DateFormat';
 import { ReservaData } from 'src/viewsModels/ReservaData';
 
 @Component({
@@ -20,7 +21,6 @@ export class CadastroReservaPage implements OnInit {
   ngOnInit() {
     this.obterUsuarioLogado();
     this.obterData();
-    this.listar(this.data);
     this.obterHorariosDisponiveis();
   }
   
@@ -32,19 +32,11 @@ export class CadastroReservaPage implements OnInit {
   obterData() {
     const dataObtida: string = JSON.parse(localStorage.getItem('data'));
     if(dataObtida) this.data = dataObtida;
-    else this.data = Date();
-  }
-
-  listar(data: string) {
-    console.log(data);
-    let subscribe = this.reservaService.listarPorData(data).subscribe((res) => {
-      this.reservas = res;
-      console.log(this.reservas);
-    });
+    else this.data = DateFormat.convertDateTimePrint(Date());
   }
 
   obterHorariosDisponiveis() {
-    console.log(this.reservas);
+    this.horarios = this.reservaService.listarHorariosDisponiveis(this.data);
   }
 
 }
