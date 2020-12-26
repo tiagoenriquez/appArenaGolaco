@@ -5,6 +5,7 @@ import { Reserva } from "src/models/Reserva";
 import { DateFormat } from "src/shared/DateFormat";
 import { Global } from "src/shared/Global";
 import { ReservaData } from "src/viewsModels/ReservaData";
+import { ReservaUsuario } from "src/viewsModels/ReservaUsuario";
 
 @Injectable({
     'providedIn': 'root'
@@ -54,6 +55,13 @@ export class ReservaService {
 
     cadastrarReserva(reserva: Reserva): Observable<Response> {
         return this.http.post<Response>(this.apiUrl, reserva);
+    }
+
+    listarPorUsuario(reserva: Reserva): Observable<ReservaUsuario[]> {
+        reserva.inicio = DateFormat.convertDateTimePrint(reserva.inicio);
+        console.log("inicio: " + reserva.inicio);
+        return this.http.get<ReservaUsuario[]>(`${this.apiUrl}/usuario=${reserva.usuario_id}&inicio=${reserva.inicio}`);
+        throw new Error("Método ainda não implementado");
     }
 
     obterHorarioInicial(data: Date, dataAtual: Date): number {
