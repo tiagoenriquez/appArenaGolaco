@@ -27,11 +27,9 @@ export class ListaReservasPage implements OnInit {
   listar(data: string){
     let reservas: ReservaData[] = new Array<ReservaData>();
     let subscribe = this.reservaService.listarPorData(data).subscribe(res => this.reservas = res);
-    console.log(this.reservas);
   }
 
   reservar() {
-    console.log(this.data);
     localStorage.setItem('data', JSON.stringify(this.data));
     this.router.navigate(['/cadastro-reserva']);
   }

@@ -59,9 +59,12 @@ export class ReservaService {
 
     listarPorUsuario(reserva: Reserva): Observable<ReservaUsuario[]> {
         reserva.inicio = DateFormat.convertDateTimePrint(reserva.inicio);
-        console.log("inicio: " + reserva.inicio);
         return this.http.get<ReservaUsuario[]>(`${this.apiUrl}/usuario=${reserva.usuario_id}&inicio=${reserva.inicio}`);
-        throw new Error("Método ainda não implementado");
+    }
+
+    excluir(inicio: string): Observable<Response> {
+        console.log(inicio);
+        return this.http.delete<Response>(this.apiUrl + "/inicio");
     }
 
     obterHorarioInicial(data: Date, dataAtual: Date): number {

@@ -15,6 +15,12 @@
         <ion-item>
           <ion-label>Usuário: </ion-label>
           <ion-input [(ngModel)]="usuario.nome"></ion-input>        
+        </ion-item>        
+
+        <ion-item expand="full" *ngFor="let reserva of reservas" (click)="excluir(reserva.inicio);">
+          Data:  {{ obterData(reserva.inicio) }} - 
+          Inicio: {{ obterHorario(reserva.inicio) }} - 
+          Fim: {{ obterHorario(reserva.fim)}}
         </ion-item>
 
       </ion-col>
