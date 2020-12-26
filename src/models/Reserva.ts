@@ -1,7 +1,7 @@
 export class Reserva {
 
-    inicio: Date = null;
-    fim: Date = null;
+    inicio: string = null;
+    fim: string = null;
     usuario_id: number = null;
 
 }

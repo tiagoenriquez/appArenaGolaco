@@ -16,7 +16,15 @@
           <ion-label>Usuário:</ion-label>
           <ion-input [(ngModel)]="usuario.nome"></ion-input>
           <ion-label>Data:</ion-label>
-          <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="data"></ion-datetime>
+          <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="data" (ionChange)="mudarData(data)"></ion-datetime>
+        </ion-item>
+
+        <ion-item>
+          <b>Horários</b>
+        </ion-item>        
+
+        <ion-item expand="full" *ngFor="let horario of horarios" (click)="reservar(horario);">
+          {{ horario }}
         </ion-item>
 
       </ion-col>

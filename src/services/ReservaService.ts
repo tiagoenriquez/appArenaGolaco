@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { Reserva } from "src/models/Reserva";
 import { DateFormat } from "src/shared/DateFormat";
 import { Global } from "src/shared/Global";
 import { ReservaData } from "src/viewsModels/ReservaData";
@@ -31,36 +32,28 @@ export class ReservaService {
             return [];
         }
         for (let i = this.obterHorarioInicial(dataDate, dataAtualDate); i < 22; i++) {
-            if (i % 2 == 0) horarios.push(this.obterHorario(i));
+            if (i % 2 == 0) horarios.push(this.formatarHorario(i));
         }
         let horariosReservados: string[] = new Array<string>();
         let subscribe = this.listarPorData(data).subscribe((reservas) => {
             for (let reserva of reservas) {
                 let inicio = new Date(reserva.inicio);
                 let horaInicioNumber = inicio.getHours();
-                let horaInicio = this.obterHorario(horaInicioNumber);
-                if(horariosReservados.indexOf(horaInicio) == -1) horariosReservados.push(horaInicio);
-                for(let horario of horariosReservados) {
-                    if(horarios.indexOf(horario) != -1) {
-                        console.log(horarios);
-                        console.log(horario);
-                        horarios.splice(horarios.indexOf(horario, 1));
-                        console.log(horarios);
-                    }
-                }
-                console.log(horarios);
-                console.log(horariosReservados);
-                console.log(horaInicio);
-                if(horarios.indexOf(horaInicio) > -1) {
-                    console.log(horarios);
-                    console.log(horaInicio);
-                    horarios.splice(horarios.indexOf(horaInicio));
+                let horaInicio = this.formatarHorario(horaInicioNumber);
+                if (horariosReservados.indexOf(horaInicio) == -1) horariosReservados.push(horaInicio);
+            }
+            for (let i = 0; i < horariosReservados.length; i++) {
+                let indice = horarios.indexOf(horariosReservados[i]);
+                if (indice != -1) {
+                    horarios.splice(indice, 1);
                 }
             }
-            console.log(horarios);
         });
-        console.log(horarios);
         return horarios;
+    }
+
+    cadastrarReserva(reserva: Reserva): Observable<Response> {
+        return this.http.post<Response>(this.apiUrl, reserva);
     }
 
     obterHorarioInicial(data: Date, dataAtual: Date): number {
@@ -68,7 +61,7 @@ export class ReservaService {
         else return 6;
     }
 
-    obterHorario(number: number): string {
+    formatarHorario(number: number): string {
         if (number < 10) return "0" + number + ":00:00";
         else return number + ":00:00";
     }
