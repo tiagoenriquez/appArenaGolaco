@@ -23,7 +23,7 @@ export class ReservaService {
     }
 
     listarHorariosDisponiveis(data: string): string[] {
-        let dataAtual = DateFormat.convertDateTimePrint(Date());
+        let dataAtual = DateFormat.convertDateTimeApi(Date());
         let dataDate = new Date(data);
         let dataAtualDate = new Date(dataAtual);
         let horarios: string[] = new Array<string>();
@@ -58,13 +58,12 @@ export class ReservaService {
     }
 
     listarPorUsuario(reserva: Reserva): Observable<ReservaUsuario[]> {
-        reserva.inicio = DateFormat.convertDateTimePrint(reserva.inicio);
+        reserva.inicio = DateFormat.convertDateTimeApi(reserva.inicio);
         return this.http.get<ReservaUsuario[]>(`${this.apiUrl}/usuario=${reserva.usuario_id}&inicio=${reserva.inicio}`);
     }
 
     excluir(inicio: string): Observable<Response> {
-        console.log(inicio);
-        return this.http.delete<Response>(this.apiUrl + "/inicio");
+        return this.http.delete<Response>(`${this.apiUrl}/${inicio}`);
     }
 
     obterHorarioInicial(data: Date, dataAtual: Date): number {

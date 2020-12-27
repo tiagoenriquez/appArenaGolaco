@@ -17,7 +17,7 @@ export class ListaReservasPage implements OnInit {
   constructor(private reservaService: ReservaService, private router: Router) { }
 
   ngOnInit() {
-    this.data = DateFormat.convertDateTimePrint(Date());
+    this.data = DateFormat.convertDateTimeApi(Date());
     this.listar(this.data);
   }
 

@@ -35,7 +35,7 @@ export class CadastroReservaPage implements OnInit {
   obterData() {
     const dataObtida: string = JSON.parse(localStorage.getItem('data'));
     if(dataObtida) this.data = dataObtida;
-    else this.data = DateFormat.convertDateTimePrint(Date());
+    else this.data = DateFormat.convertDateTimeApi(Date());
   }
 
   obterHorariosDisponiveis() {

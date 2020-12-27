@@ -9,7 +9,7 @@ export class DateFormat {
 
     // Recebe data no formato exemplo "Sun Dec 06 2020 11:32:08 GMT-0300 (Horário Padrão de Brasília)".
 
-    static convertDateTimePrint(date: string): string {
+    static convertDateTimeApi(date: string): string {
         this.year = this.getYear(date);
         this.month = this.getMonth(date);
         this.day = this.getDay(date);
@@ -17,6 +17,16 @@ export class DateFormat {
         this.minute = this.getMinute(date);
         this.second = this.getSecond(date);
         return this.year + "-" + this.month + "-" + this.day + " " + this.hour + ":" + this.minute + ":" + this.second;
+    }
+
+    static convertDateTimePrint(date: string): string {
+        this.year = this.getYear(date);
+        this.month = this.getMonth(date);
+        this.day = this.getDay(date);
+        this.hour = this.getHour(date);
+        this.minute = this.getMinute(date);
+        this.second = this.getSecond(date);
+        return this.day + "/" + this.month + "/" + this.year + " " + this.hour + ":" + this.minute + ":" + this.second;
     }
 
     // Recebe data no formato exemplo "2020-12-11T22:50:20.474-03:00" ou "2020-12-11 22:50:20".
@@ -36,6 +46,13 @@ export class DateFormat {
         this.month = date[5] + date[6];
         this.day = date[8] + date[9];
         return this.year + "-" + this.month + "-" + this.day;
+    }
+
+    static convertDatePrint(date: string): string {
+        this.year = date[0] + date[1] + date[2] + date[3];
+        this.month = date[5] + date[6];
+        this.day = date[8] + date[9];
+        return this.day + "/" + this.month + "/" + this.year;
     }
 
     static getYear(date: string): string {
