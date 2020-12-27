@@ -19,10 +19,18 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * Fecha o menu lateral.
+   */
   ionViewDidEnter() {
     this.menu.swipeGesture(false);
   }
 
+  /**
+  * Loga o usuário no sistema guardando suas informações para utilização em outras telas.
+  * Abre o menu laterall.
+  * Encaminha o usuário para a tela de lista de reservas.
+  */
   logar() {
     let subscribe = this.usuarioService.logar(this.login).subscribe((usuario) => {
       localStorage.setItem('usuarioLogado', JSON.stringify(usuario));
@@ -31,6 +39,9 @@ export class LoginPage implements OnInit {
     })
   }
 
+  /**
+  * Encaminha o usuário para a tela de cadastro de usuário.
+  */
   cadastrar() {
     this.router.navigate(['/cadastro-usuario']);
   }
